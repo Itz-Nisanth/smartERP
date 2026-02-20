@@ -40,5 +40,7 @@ This project demonstrates:
 *CSS
 
 *JavaScript
+
 *Chart.js
-*localStorage (for data persistence)
+
+*localStorage (for data storage)
