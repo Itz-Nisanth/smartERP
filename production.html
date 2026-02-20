@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartERP Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">
+      <i class="fa-solid fa-chart-line"></i>
+      <span>SmartERP</span>
+    </div>
+
+   <nav>
+  <a href="dashboard.html" class="nav-link">
+    <i class="fa-solid fa-gauge"></i> Dashboard
+  </a>
+
+  <a href="production.html" class="nav-link active">
+    <i class="fa-solid fa-list-check"></i> Production Plane
+  </a>
+
+  <a href="actual.html" class="nav-link">
+    <i class="fa-solid fa-box"></i> Actual Usage
+  </a>
+
+  <a href="inventory.html" class="nav-link">
+    <i class="fa-solid fa-warehouse"></i> Inventory
+  </a>
+</nav>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main production">
+
+    <header class="topbar">
+
+      <button id="menuToggle" class="menu-btn">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <div class="title">
+        <h1>Production Plane</h1>
+        <p>Production Cost & Inventory Intelligence</p>
+      </div>
+
+      <div class="top-actions">
+
+        <span id="clock"></span>
+
+        <button id="themeToggle" class="theme-toggle">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <button class="admin-btn">
+          <i class="fa-solid fa-user"></i>
+          Admin
+        </button>
+
+      </div>
+
+    </header>
+
+    
+
+<!-- PRODUCTION CONTENT -->
+<!-- ================= PRODUCTION CONTENT ================= -->
+<section class="prod-wrapper prod-layout" style="margin-top: 1.3rem;">
+
+  <!-- TOP ROW -->
+  <div class="prod-top prod-left">
+
+    <!-- ADD MATERIAL CARD -->
+    <div class="prod-card prod-form-card">
+      <h2>Add Material</h2>
+
+      <div class="prod-form-group">
+        <label>Item Name</label>
+        <input type="text" placeholder="Enter material name" id="itemName">
+      </div>
+
+      <div class="prod-form-group">
+        <label>Quantity</label>
+        <input type="number" placeholder="Enter quantity" id="itemQty">
+      </div>
+
+      <div class="prod-form-group">
+        <label>Rate</label>
+        <input type="number" placeholder="Enter rate" id="itemRate">
+      </div>
+
+      <button class="prod-btn primary-btn"  id="addItemBtn">
+        <i class="fa-solid fa-plus"></i> Add Item
+      </button>
+    </div>
+
+    <!-- COST DISTRIBUTION CHART -->
+    <div class="prod-card prod-chart-card prod-right">
+      <h2>Material Cost Distribution</h2>
+      <canvas id="materialChart"></canvas>
+    </div>
+
+  </div>
+
+
+  <!-- PLANNED TABLE -->
+  <div class="prod-card prod-table-card prod-table">
+    <h2>Planned Items Summary</h2>
+
+    <table class="prod-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>Rate</th>
+          <th>Amount</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody id="productionTableBody">
+
+      </tbody>
+    </table>
+
+    <div class="prod-total">
+      Total Planned Cost: <strong id="totalPlannedCost">₹0</strong>
+    </div>
+  </div>
+
+
+  <!-- INSIGHTS ROW -->
+  <div class="prod-insights">
+
+    <div class="prod-insight-card card fade-up fade-up-delay-1">
+      <h4>Total Materials</h4>
+      <p id="totalMaterials">0</p>
+    </div>
+
+    <div class="prod-insight-card card fade-up fade-up-delay-2">
+      <h4>Highest Cost Item</h4>
+      <p id="highestCostItem">-</p>
+    </div>
+
+    <div class="prod-insight-card card fade-up fade-up-delay-3">
+      <h4>Average Rate</h4>
+      <p id="avgRate">₹0</p>
+    </div>
+
+    <div class="prod-insight-card card fade-up fade-up-delay-4">
+      <h4>Estimated Cost / Unit</h4>
+      <p id="estimatedCost">₹0</p>
+    </div>
+
+  </div>
+
+
+  <!-- BUDGET PROGRESS -->
+  <div class="prod-card prod-budget-card">
+  <h2>Budget Utilization</h2>
+
+  <div class="prod-budget-info" id="budgetText"></div>
+
+  <div class="prod-progress-bar">
+    <div class="prod-progress-fill" id="budgetBar"  style="width: 42%;"></div>
+  </div>
+
+  <div class="prod-budget-extra">
+    <span id="budgetPercent">0%</span>
+    <span id="budgetRemaining">Remaining: ₹0</span>
+  </div>
+</div>
+
+
+</section>
+
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

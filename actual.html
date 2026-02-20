@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartERP</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="layout">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="logo">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>SmartERP</span>
+        </div>
+
+        <nav>
+          <a href="dashboard.html" class="nav-link">
+            <i class="fa-solid fa-gauge"></i> Dashboard
+          </a>
+
+          <a href="production.html" class="nav-link">
+            <i class="fa-solid fa-list-check"></i> Production Plan
+          </a>
+
+          <a href="actual.html" class="nav-link active">
+            <i class="fa-solid fa-box"></i> Actual Usage
+          </a>
+
+          <a href="inventory.html" class="nav-link">
+            <i class="fa-solid fa-warehouse"></i> Inventory
+          </a>
+        </nav>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="main">
+        <header class="topbar">
+          <button id="menuToggle" class="menu-btn">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+
+          <div class="title">
+            <h1>Actual Usage</h1>
+            <p>Actual Material Usage Tracking</p>
+          </div>
+
+          <div class="top-actions">
+            <span id="clock"></span>
+
+            <button id="themeToggle" class="theme-toggle">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+
+            <button class="admin-btn">
+              <i class="fa-solid fa-user"></i>
+              Admin
+            </button>
+          </div>
+        </header>
+
+        <!-- ================= ACTUAL USAGE CONTENT ================= -->
+
+        <section class="actual-wrapper">
+          <section class="actual-meta">
+            <div class="meta-card card fade-up fade-up-delay-1">
+              <label>Production Order ID</label>
+              <input type="text" placeholder="PO-2024-001" />
+            </div>
+
+            <div class="meta-card card fade-up fade-up-delay-2  ">
+              <label>Production Date</label>
+              <input type="date" />
+            </div>
+
+            <div class="meta-card card fade-up fade-up-delay-3">
+              <label>Batch No</label>
+              <input type="text" placeholder="BATCH-01" />
+            </div>
+          </section>
+
+          <!-- TOP ROW -->
+          <div class="actual-top">
+            <!-- ACTUAL ENTRY FORM -->
+            <div class="actual-card actual-form">
+              <h2>Enter Actual Usage</h2>
+
+              <div class="actual-field">
+                <label>Item Name</label>
+                <input type="text" placeholder="Enter item name" />
+              </div>
+
+              <div class="actual-field">
+                <label>Actual Quantity Used</label>
+                <input type="number" placeholder="Enter quantity" />
+              </div>
+
+              <div class="actual-field">
+                <label>Actual Rate</label>
+                <input type="number" placeholder="Enter rate" />
+              </div>
+
+              <button class="actual-btn">
+                <i class="fa-solid fa-plus"></i> Add Usage
+              </button>
+            </div>
+
+            <!-- VARIANCE SUMMARY -->
+            <div class="actual-card actual-summary">
+              <h2>Variance Overview</h2>
+
+              <div class="variance-box">
+                <h4>Total Planned Cost</h4>
+                <p>₹50,000</p>
+              </div>
+
+              <div class="variance-box">
+                <h4>Total Actual Cost</h4>
+                <p>₹54,500</p>
+              </div>
+
+              <div class="variance-box">
+                <h4>Total Variance</h4>
+                <p>₹4,500 ↑</p>
+                <span class="status-badge loss">Loss</span>
+              </div>
+            </div>
+          </div>
+
+          <section class="usage-summary">
+
+  <div class="summary-card">
+    <h4>Total Items Used</h4>
+    <h2>5</h2>
+  </div>
+
+  <div class="summary-card">
+    <h4>Highest Variance Item</h4>
+    <h2>Fabric</h2>
+  </div>
+
+  <div class="summary-card">
+    <h4>% Over Budget</h4>
+    <h2>9%</h2>
+  </div>
+
+</section>
+
+
+          <!-- VARIANCE TABLE -->
+          <div class="actual-card actual-table-card">
+            <h2>Item-wise Variance Report</h2>
+
+            <table class="actual-table">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Planned Qty</th>
+                  <th>Actual Qty</th>
+                  <th>Planned Cost</th>
+                  <th>Actual Cost</th>
+                  <th>Variance</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>Fabric</td>
+                  <td>100</td>
+                  <td>110</td>
+                  <td>₹25,000</td>
+                  <td>₹28,600</td>
+                  <td class="variance-loss">₹3,600 ↑</td>
+                  <td>
+                    <i
+                      class="fa-solid fa-pen action-icon edit"
+                      style="margin-left: 90px"
+                    ></i>
+
+                    <i
+                      class="fa-solid fa-trash action-icon delete"
+                      style="margin-left: 20px"
+                    ></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- COST COMPARISON CHART -->
+          <div class="actual-card actual-chart-card">
+            <h2>Planned vs Actual Cost Comparison</h2>
+            <canvas id="actualCostChart"></canvas>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

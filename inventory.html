@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartERP</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="layout">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="logo">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>SmartERP</span>
+        </div>
+
+        <nav>
+          <a href="dashboard.html" class="nav-link">
+            <i class="fa-solid fa-gauge"></i> Dashboard
+          </a>
+
+          <a href="production.html" class="nav-link">
+            <i class="fa-solid fa-list-check"></i> Production Plan
+          </a>
+
+          <a href="actual.html" class="nav-link ">
+            <i class="fa-solid fa-box"></i> Actual Usage
+          </a>
+
+          <a href="inventory.html" class="nav-link active">
+            <i class="fa-solid fa-warehouse"></i> Inventory
+          </a>
+        </nav>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="main">
+        <header class="topbar">
+          <button id="menuToggle" class="menu-btn">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+
+          <div class="title">
+            <h1>Inventory</h1>
+            <p>Track and manage your inventory levels</p>
+          </div>
+
+          <div class="top-actions">
+            <span id="clock"></span>
+
+            <button id="themeToggle" class="theme-toggle">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+
+            <button class="admin-btn">
+              <i class="fa-solid fa-user"></i>
+              Admin
+            </button>
+          </div>
+        </header>
+<!-- INVENTORY CONTENT -->
+<section class="inventory">
+
+  <!-- ===== TOP SUMMARY CARDS ===== -->
+  <section class="inv-summary">
+    <div class="inv-card card fade-up fade-up-delay-1">
+      <h4>Total Materials</h4>
+      <h2>12</h2>
+    </div>
+
+    <div class="inv-card card fade-up fade-up-delay-2">
+      <h4>Total Stock Value</h4>
+      <h2>₹1,25,000</h2>
+    </div>
+
+    <div class="inv-card warning fade-up fade-up-delay-3">
+      <h4>Low Stock Items</h4>
+      <h2>3</h2>
+    </div>
+
+    <div class="inv-card danger fade-up fade-up-delay-4">
+      <h4>Out of Stock</h4>
+      <h2>1</h2>
+    </div>
+  </section>
+
+
+  <!-- ===== ADD MATERIAL + CHART ===== -->
+  <section class="inv-top-grid">
+
+    <!-- Add / Update Material -->
+    <div class="inv-form-card">
+      <h3>Add / Update Material</h3>
+
+      <div class="form-group">
+        <label>Item Name</label>
+        <input type="text" placeholder="Enter item name">
+      </div>
+
+      <div class="form-group">
+        <label>Category</label>
+        <select>
+          <option>Fabric</option>
+          <option>Thread</option>
+          <option>Buttons</option>
+          <option>Accessories</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Current Stock</label>
+        <input type="number" placeholder="Enter stock quantity">
+      </div>
+
+      <div class="form-group">
+        <label>Minimum Stock Level</label>
+        <input type="number" placeholder="Enter minimum level">
+      </div>
+
+      <div class="form-group">
+        <label>Unit</label>
+        <input type="text" placeholder="kg / meter / piece">
+      </div>
+
+      <div class="form-group">
+        <label>Cost per Unit</label>
+        <input type="number" placeholder="Enter cost">
+      </div>
+
+      <button class="primary-btn">
+        <i class="fa-solid fa-plus"></i> Save Material
+      </button>
+    </div>
+
+
+    <!-- Inventory Distribution Chart -->
+    <div class="inv-chart-card">
+      <h3>Stock Distribution</h3>
+      <canvas id="inventoryChart"></canvas>
+    </div>
+
+  </section>
+
+
+  <!-- ===== INVENTORY TABLE ===== -->
+  <section class="inv-table-card">
+    <h3>Inventory List</h3>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Category</th>
+            <th>Current Stock</th>
+            <th>Min Level</th>
+            <th>Status</th>
+            <th>Unit Cost</th>
+            <th>Total Value</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Fabric</td>
+            <td>Material</td>
+            <td>120</td>
+            <td>50</td>
+            <td><span class="status good">In Stock</span></td>
+            <td>₹250</td>
+            <td>₹30,000</td>
+            <td>
+              <i class="fa-solid fa-pen action-icon edit"></i>
+              <i class="fa-solid fa-trash action-icon delete"></i>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Thread</td>
+            <td>Material</td>
+            <td>15</td>
+            <td>40</td>
+            <td><span class="status low">Low Stock</span></td>
+            <td>₹50</td>
+            <td>₹750</td>
+            <td>
+              <i class="fa-solid fa-pen action-icon edit"></i>
+              <i class="fa-solid fa-trash action-icon delete"></i>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Buttons</td>
+            <td>Accessories</td>
+            <td>0</td>
+            <td>20</td>
+            <td><span class="status danger">Out of Stock</span></td>
+            <td>₹10</td>
+            <td>₹0</td>
+            <td>
+              <i class="fa-solid fa-pen action-icon edit"></i>
+              <i class="fa-solid fa-trash action-icon delete"></i>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <!-- ===== LOW STOCK ALERT ===== -->
+  <section class="inv-alert-card">
+    <h3><i class="fa-solid fa-triangle-exclamation"></i> Low Stock Alerts</h3>
+
+    <div class="alert-item">
+      Thread – Only 15 left (Min: 40)
+    </div>
+
+    <div class="alert-item">
+      Buttons – Out of Stock
+    </div>
+  </section>
+
+</section>
+
+
+      
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

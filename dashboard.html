@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartERP Dashboard</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="logo">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>SmartERP</span>
+      </div>
+
+      <nav>
+        <a href="dashboard.html" class="nav-link active">
+          <i class="fa-solid fa-gauge"></i> Dashboard
+        </a>
+
+        <a href="production.html" class="nav-link">
+          <i class="fa-solid fa-list-check"></i> Production Plan
+        </a>
+
+        <a href="actual.html" class="nav-link">
+          <i class="fa-solid fa-box"></i> Actual Usage
+        </a>
+
+        <a href="inventory.html" class="nav-link">
+          <i class="fa-solid fa-warehouse"></i> Inventory
+        </a>
+      </nav>
+
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <header class="topbar">
+
+        <button id="menuToggle" class="menu-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="title">
+          <h1>Dashboard</h1>
+          <p>Production Cost & Inventory Intelligence</p>
+        </div>
+
+        <div class="top-actions">
+
+          <span id="clock"></span>
+
+          <button id="themeToggle" class="theme-toggle">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+
+          <button class="admin-btn">
+            <i class="fa-solid fa-user"></i>
+            Admin
+          </button>
+
+        </div>
+
+      </header>
+
+      <!-- STAT CARDS -->
+      <section class="stats">
+
+        <div class="card fade-up fade-up-delay-1">
+          <h4>Total Planned</h4>
+          <h2 class="total-planned-amount">₹50,000</h2>
+        </div>
+
+        <div class="card fade-up fade-up-delay-2">
+          <h4>Total Actual</h4>
+          <h2>₹54,500</h2>
+        </div>
+
+        <div class="card danger fade-up fade-up-delay-3">
+          <h4>Total Variance</h4>
+          <h2>₹4,500 ↑</h2>
+        </div>
+
+      </section>
+
+      <section class="stock-health">
+
+        <div class="card danger-stock">
+          <h4>Negative Stock Items</h4>
+          <h2 id="negativeStockCount">0</h2>
+          <p class="danger-text">Needs Immediate Action</p>
+        </div>
+
+        <div class="card warning-stock">
+          <h4>Low Stock Items</h4>
+          <h2 id="lowStockCount">0</h2>
+          <p>Below Minimum Level</p>
+        </div>
+
+        <div class="card">
+          <h4>Total Inventory Value</h4>
+          <h2 id="inventoryValue">₹0</h2>
+        </div>
+
+      </section>
+
+      <section class="stock-progress">
+        <h3>Inventory Status</h3>
+
+        <div id="stockBars"></div>
+      </section>
+
+
+
+      <!-- EFFICIENCY + SUMMARY -->
+      <section class="grid-2">
+
+        <div class="efficiency-card fade-up fade-up-delay-4 card">
+          <div class="circle">
+            <span>92%</span>
+          </div>
+          <div>
+            <h3>Production Efficiency</h3>
+            <p>Based on planned vs actual usage</p>
+          </div>
+        </div>
+
+        <div class="summary-card card fade-up fade-up-delay-1">
+          <h3>Financial Summary</h3>
+          <div class="row"><span>Planned</span><strong>₹50,000</strong></div>
+          <div class="row"><span>Actual</span><strong>₹54,500</strong></div>
+          <div class="row variance"><span style="color: #8e8e8e;">Variance</span><strong
+              style="color: #8e8e8e;">+₹4,500</strong></div>
+        </div>
+
+      </section>
+
+      <!-- TABLE -->
+      <section class="table-box">
+        <h3>Variance Report</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Planned</th>
+              <th>Actual</th>
+              <th>Difference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Fabric</td>
+              <td>₹25,000</td>
+              <td>₹28,600</td>
+              <td class="danger-text">+₹3,600</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+
+      <!-- INVENTORY ALERT TABLE -->
+      <section class="table-box">
+        <h3>Inventory Alerts</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Current Stock</th>
+              <th>Min Required</th>
+              <th>Status</th>
+              <th>Action Needed</th>
+            </tr>
+          </thead>
+
+          <tbody id="inventoryAlertTable">
+            <!-- JS will fill this -->
+          </tbody>
+        </table>
+      </section>
+
+      <!-- CHART -->
+      <section class="chart-box">
+        <h3>Cost Comparison</h3>
+        <canvas id="costChart"></canvas>
+      </section>
+
+
+
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
